@@ -1,35 +1,55 @@
-var makePiggysRain = function() {
-  //clear out everything
-  //$('.rain').empty();
+var heighth = window.innerHeight * .9;
+var width = window.innerWidth * .9;
+var grid = [1, 15], //[rows, columns]
+  tl = gsap.timeline({
+    repeat: -1,
+    repeatDelay: 0.5
+  });
 
-  var increment = 0;
-  var drops = "";
-  var backDrops = "";
-  while (increment < 100) {
+  buildGrid({
+    grid: grid,
+    className: "drop",
+    width: width,
+    gutter: 15
+  });
 
-    //couple random numbers to use for various randomizations
-    //random number between 98 and 1
-    var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-    //random number between 5 and 2
-    var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-    //increment
-    increment += randoFiver;
-    //add in a new raindrop with various randomizations to certain CSS properties
-    drops += '<div class="drop" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%;"></div>';
-    backDrops += '<div class="drop" style="right: ' + increment + '%;"></div>';
-  }
+  function animatePigs() {
+  var randoDegree = (Math.floor(Math.random() * (360) + 1));
+    gsap.to(".drop", {
+      duration: 4,
+      y: heighth,
+      rotation: randoDegree,
+      ease: "power2"
+     }
+   );
+  };
 
-  $('.rain.front-row').append(drops);
-  $('.rain.back-row').append(backDrops);
+//helper function to build a grid of <div> elements
+function buildGrid(vars) {
+	vars = vars || {};
+  var container = document.createElement("div");
+	var box = document.createElement("div"),
+		rows = vars.grid[0] || 1,
+		cols = vars.grid[1] || 5,
+		width = vars.width || 100,
+		gutter = vars.gutter || 1,
+    className = vars.className || "",
+		w = (width - cols * gutter) / cols,
+		css = "display: inline-block; margin: 0 " + (gutter / width * 100) + "% " + (gutter / width * 100) + "% 0; width: " + (w / width * 100) + "%;",
+		l = rows * cols,
+		i, box;
+	for (i = 0; i < l; i++) {
+		pig = document.createElement("div");
+		pig.style.cssText = css;
+    pig.setAttribute("class", className);
+    pig.index = i;
+    pig.setAttribute("data-index", i);
+		box.appendChild(pig);
+	}
+	box.style.cssText = "width:" + width + "px; line-height: 0; padding:" + gutter + "px 0 0 " + gutter + "px; display:inline-block;";
+	container.appendChild(box);
+	return container;
 }
-makePiggysRain();
 
-var heighth = window.innerHeight;
-//random degree for rotation
-var randoDegree = (Math.floor(Math.random() * (360) + 1));
-gsap.from(".drop", {
-  duration: 2,
-  y: -heighth,
-  rotatioin: randoDegree,
-  ease: "power4"
-});
+gsap.set(".drop", {rotation: 0.5, force3D: true});
+animatePigs();
