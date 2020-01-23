@@ -3,15 +3,20 @@ html {
 }
 
 body {
-  height: 100%;
+
+  background-size: cover;
+  background-position: center;
   margin: 0;
   overflow: hidden;
-  background-image: linear-gradient(to bottom, #2c4482, #060d17), url('../images/background.png');
+  background-image: linear-gradient(to bottom, transparent, #555557), url('../images/background3.png');
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 
 .rain {
   position: absolute;
-  left: 0;
+
   width: 100%;
   height: 100%;
   z-index: 2;
@@ -24,17 +29,13 @@ body {
   opacity: 0.5;
 }
 
-body.back-row-toggle .rain.back-row {
-  display: block;
-}
-
 .drop {
   position: absolute;
-  bottom: 100%;
-  width: 15px;
-  height: 120px;
-  pointer-events: none;
-  animation: drop 0.5s linear infinite;
+  background-image: url('../images/piggy.png');
+  bottom: 10%;
+  left: 5%;
+  width: 50px;
+  height: 50px;
 }
 
 @keyframes drop {
