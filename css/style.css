@@ -1,0 +1,82 @@
+/*
+font-family: 'Open Sans', sans-serif;
+font-family: 'Pacifico', cursive;
+*/
+
+body {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.bg-container {
+  background-color: #498bb0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.container {
+  display: grid;
+  grid-column-start: header;
+  grid-column-end: header;
+  grid-row-start: header;
+  grid-row-end: footer;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  width: 100vw;
+}
+
+.coin {
+  background-image: url('../images/coin.png');
+  background-repeat: no-repeat;
+  position: absolute;
+  visibility: hidden;
+}
+
+.pig {
+  background-image: url('../images/piggy.png');
+  background-repeat: no-repeat;
+  position: absolute;
+  visibility: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas: "header header header"
+                       "content contentGoals pic"
+                       "footer footer footer";
+  grid-template-columns: 25% auto 25%;
+  grid-template-rows: 25% auto 10%;
+}
+
+.team-name {
+  display: grid;
+  align-items: center;
+  font-family: 'Pacifico', cursive;
+  grid-column: header;
+  grid-row: header;
+  justify-items: center;
+  z-index: 1;
+}
+
+.team-name > h1 {
+    font-size: 500%;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+.goals {
+  display: grid;
+  font-family: 'Open Sans', sans-serif;
+  grid-column: contentGoals;
+  grid-row: content;
+  list-style: url('../images/gentleman.svg');
+  margin-bottom: 0;
+}
