@@ -1,81 +1,64 @@
-var heighth = window.innerHeight * 0.9;
-var width = window.innerWidth * 0.9;
-var grid = [1, 15], //[rows, columns]
-  tl = gsap.timeline({
-    repeat: -1,
-    repeatDelay: 0.5
-  });
+var container = $(".container");
+var numItems = 15;
+var minX = 0;
+var maxX = container.width();
+var minY = 200;
+var maxY = 600;
+var minSize = 50;
+var maxSize = 80;
+var minDelay = 0;
+var maxDelay = 2;
+var minOpacity = 0.8;
+var maxOpacity = 0.9;
+var minDuration = 2;
+var maxDuration = 4;
 
-  function animatePigs() {
-    var randoDegree = Math.floor(Math.random() * 360 + 1);
-  //one stagger call does all the animation:
-  tl.to(".drop", {
-      duration: 4,
-      scale: 0.1,
-      y: heighth,
-      yoyo: true,
-      repeat: 1,
-      rotation: randoDegree,
-      ease: "power2",
-      stagger: {
-        amount: 1.5,
-        grid: grid,
-        axis: "y",
-        ease: "none",
-        from: "edges"
-      }
-    }
-  );
+for (var i = 0; i < numItems; i++) {
+  var pig = $("<div class='pig'/>").appendTo(container);
+  var coin = $("<div class='coin'/>").appendTo(container);
+  animate(pig, true);
+  animate(coin, true);
 }
 
-  // function animatePigs() {
-  // var randoDegree = (Math.floor(Math.random() * (360) + 1));
-  //   gsap.to(".drop", {
-  //     duration: 4,
-  //     y: heighth,
-  //     rotation: randoDegree,
-  //     ease: "power2"
-  //    }
-  //  );
-  // }
+$(window).resize(onResize);
 
-  buildGrid({
-    grid: grid,
-    className: "drop",
-    width: width,
-    gutter: 100,
-    parent: "#container"
+function animate(item, firstRun) {
+
+  var x = random(minX, maxX);
+  var y = random(minY, maxY);
+  var size = random(minSize, maxSize);
+  var delay = random(minDelay, maxDelay);
+  var opacity = random(minOpacity, maxOpacity);
+  var duration = random(minDuration, maxDuration);
+  var degree = random(0, 360);
+
+  TweenLite.set(item, {
+    x: x,
+    y: -size,
+    width: size,
+    height: size,
+    autoAlpha: opacity
   });
 
-  animatePigs();
+  var tween = TweenLite.to(item, duration, {
+    autoAlpha: 0,
+    y: y,
+    delay: delay,
+    rotation: degree,
+    onComplete: animate,
+    onCompleteParams: [item]
+  });
 
-
-
-//helper function to build a grid of <div> elements
-function buildGrid(vars) {
-	vars = vars || {};
-	var container = document.createElement("div"),
-		rows = vars.grid[0] || 1,
-		cols = vars.grid[1] || 5,
-		width = vars.width || 100,
-		gutter = vars.gutter || 1,
-    className = vars.className || "",
-		w = (width - cols * gutter) / cols,
-    parent = (typeof(vars.parent) === "string") ? document.querySelector(vars.parent) : vars.parent ? vars.parent : document.body,
-		css = "display: inline-block; margin: 0 " + (gutter / width * 100) + "% " + (gutter / width * 100) + "% 0; width: " + (w / width * 100) + "%;",
-		l = rows * cols,
-		i, box;
-	for (i = 0; i < l; i++) {
-		box = document.createElement("div");
-    box.style.cssText = css;
-    box.setAttribute("class", className);
-    box.index = i;
-    box.setAttribute("data-index", i);
-	  container.appendChild(box);
-	}
-	container.style.cssText = "width:" + width + "px; line-height: 0; padding:" + gutter + "px 0 0 " + gutter + "px; display:inline-block;";
-	parent.appendChild(box);
-	return container;
+  if (firstRun) {
+    tween.time(random(duration));
+  }
 }
 
-gsap.set(".drop", {rotation: 0.5, force3D: true});
+function onResize() {
+  maxX = container.width();
+}
+
+function random(min, max) {
+  if (max == null) { max = min; min = 0; }
+  return Math.random() * (max - min) + min;
+}
