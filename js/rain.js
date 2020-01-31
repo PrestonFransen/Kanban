@@ -12,6 +12,8 @@ var minOpacity = 0.8;
 var maxOpacity = 0.9;
 var minDuration = 2;
 var maxDuration = 4;
+var minStart = 80;
+var maxStart = 120;
 
 for (var i = 0; i < numItems; i++) {
   var pig = $("<div class='pig'/>").appendTo(container);
@@ -31,10 +33,11 @@ function animate(item, firstRun) {
   var opacity = random(minOpacity, maxOpacity);
   var duration = random(minDuration, maxDuration);
   var degree = random(0, 360);
+  var start = random(minStart, maxStart);
 
   TweenLite.set(item, {
     x: x,
-    y: -size,
+    y: -start,
     width: size,
     height: size,
     autoAlpha: opacity
