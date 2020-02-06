@@ -28,19 +28,21 @@
       <div class="team-name">
         <h1>Scrum Dog Millionaires</h1>
       </div>
-      <ul class="goals">
-        <li class="fadeItem">Work on 10 of the section III business removal rules in 9.7 so that the underwriting and agents process can be more streamlined</li>
-        <li class="fadeItem">Correct BOP suspense payments from going to mainframe with the wrong LOB so that we are pulling the money from the right accounts and AR can start to apply these in BC again</li>
-        <li class="fadeItem">Complete the research for being able to add a driver’s license number and state on the account creation field so that agents have the option to add all contact information on one screen</li>
-        <li class="fadeItem">Correct drafts from being canceled when one policy on the invoice stream is non-renewed so that we don’t inadvertently cancel the inforce policy</li>
-        <li class="fadeItem">Allow bandwidth for Randall to complete the migration of rating from Insbridge to GW rating to help with the initiative to get off the mainframe</li>
-        <li class="fadeItem">Complete at least 3 items from the production support Kanban board to help users complete their work</li>
-      </ul>
+      <div class="goals-container">
+        <ul class="goals">
+          <li class="goal">Correct the date on the SR-26 document to list the actual date of cancellation so that we don't continue to print and report inaccurate data to the state</li>
+          <li class="goal">Correct the date that we print the SR-26 from the system to ensure it prints the day the policy has canceled so that we are no longer having to hold the document at an UW desk</li>
+          <li class="goal">Complete the research for being able to add a driver’s license number and state on the account creation field so that agents have the option to add all contact information on one screen</li>
+          <li class="goal">Work with Nexsure to verify which data they have stored so that we can create a file that will work with EAS to enable us to complete the ledger work for Brokerage transactions</li>
+          <li class="goal">Complete the 05/01/2020 rate change within Guidewire as well as share the knowledge with other devs so that our GW rate and insbridge rate match and we become more cross functional</li>
+        </ul>
+
+      </div>
     </div>
   </ul>
-  </script src="js/text.js">
-  </script>
+
   <script src="js/rain.js"></script>
+  <script>animateGoals();</script>
 </body>
 
 
