@@ -49,6 +49,7 @@ body {
 
 .grid {
   display: grid;
+  grid-gap: 5px;
   grid-template-areas: "header header header"
                        "content contentGoals pic"
                        "footer footer footer";
@@ -63,6 +64,7 @@ body {
   grid-column: header;
   grid-row: header;
   justify-items: center;
+  padding-bottom: 2px;
   z-index: 1;
 }
 
@@ -70,20 +72,33 @@ body {
   font-size: 500%;
   margin-bottom: 2px;
   margin-top: 2px;
+  text-decoration: underline;
+}
+
+.goals-container {
+  display: grid;
+  align-content: center;
+  grid-column: contentGoals;
+  grid-row: content;
 }
 
 .goals {
-  align-content: center;
-  display: grid;
+  align-items: center;
+  justify-content: center;
   font-family: 'Lato', sans-serif;
-  grid-column: contentGoals;
-  grid-row: content;
-  list-style: georgian inside url('../images/gentleman.svg');
+  font-size: 100%;
+  list-style: url('../images/gentleman.svg');
   margin: 0;
   padding: 0;
 }
 
-.fadeItem {
-  justify-content: center;
-  padding-bottom: 15px;
-}
+.goal {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  align-self: center;
+  line-height: 1.5;
+    position:absolute;
+    opacity: 0;
+    max-width: 50vw;
+  }
