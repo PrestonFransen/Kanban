@@ -60,7 +60,7 @@ function animate(item, firstRun) {
 
   var tl = new TimelineMax({repeat:-1, repeatDelay: 2});
   $(".goal").each(function(index, element){
-    tl.to(element, 2.5, {y:80, opacity:1})
+    tl.to(element, 2.5, {y:60, opacity:1})
       .to(element, 1.5, {x:600, opacity:0, ease:Power2.easeIn}, "+=1")
   })
 
